@@ -1,25 +1,24 @@
+import { BrowserRouter, Switch, Route} from 'react-router-dom';
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import './tailwind.output.css';
+
+import Page from './pages/Page';
+import ModeSelectionPage from './pages/ModeSelectionPage';
+import GamePage from './pages/GamePage';
+import EndgamePage from './pages/EndgamePage';
+
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+  return(
+    <BrowserRouter>
+      <Switch>
+        <Route exact path="/" render={() => <Page component={ModeSelectionPage}/>}/>
+        <Route exact path="/game" render={() => <Page component={GamePage}/>}/>
+        <Route exact path="/fin" render={() => <Page component={EndgamePage}/>}/>
+        <Route path="*" render={() => <h1>404 NOT FOUND</h1>}/>
+      </Switch>
+    </BrowserRouter> 
   );
 }
 
