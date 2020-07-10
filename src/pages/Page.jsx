@@ -7,7 +7,7 @@ export default function Page(props) {
   const Component = props.component;
 
   return (
-    <div className="page">
+    <div className="page bg-2">
       <Header/>
       <Component />
       <Footer/>
