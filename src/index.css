@@ -20,3 +20,15 @@
     flex-direction: column;
     justify-content: space-between;
 }
+
+h2 {
+    color: white;
+    font-weight: bolder;
+    font-size: 2em !important;
+}
+
+.card {
+    background-color: #282383;
+    width: 25%;
+    height: 25%;
+}

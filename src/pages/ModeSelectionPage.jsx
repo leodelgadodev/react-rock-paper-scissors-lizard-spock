@@ -1,7 +1,11 @@
 import React from 'react';
+import ModeSelector from '../components/ModeSelector';
+
 
 export default function ModeSelectionPage() {
     return(
-        <h1>ModeSelectionPage</h1>
+        <div className="flex justify-center">
+            <ModeSelector/>
+        </div>
     );
 }
