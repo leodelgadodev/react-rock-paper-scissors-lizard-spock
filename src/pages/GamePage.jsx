@@ -1,7 +1,8 @@
 import React from 'react';
+import Game from '../components/Game';
 
 export default function GamePage() {
     return(
-        <h1>GamePage</h1>
+        <Game/>
     );
 }

@@ -9,7 +9,9 @@ export default function Page(props) {
   return (
     <div className="page bg-2">
       <Header/>
-      <Component />
+      <div className="flex justify-center">
+        <Component/>
+      </div>
       <Footer/>
     </div>
   );

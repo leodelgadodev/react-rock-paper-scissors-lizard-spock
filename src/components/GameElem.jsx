@@ -1,7 +1,21 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import GameEngine from '../model/GameEngine';
 
-export default function GameElem() {
+export default function GameElem(props) {
+
+    const [type, setType] = useState("");
+
+    useEffect(() => {
+        // eslint-disable-next-line react/prop-types
+        setType(props.type)
+    }, [])
+
+    const handleClick = () => {
+        GameEngine.togglePlay();
+    }
+
     return(
-        <h1>GameElem</h1>
+        // eslint-disable-next-line react/prop-types
+        <img className="h-16 w-16 rounded-full game-elem mx-2" src={props.src} onClick={() => handleClick()}/>
     );
 }

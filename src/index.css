@@ -32,3 +32,13 @@ h2 {
     width: 25%;
     height: 25%;
 }
+
+.game-elem:hover {
+    transform: scale(1.4, 1.4);
+    cursor: pointer;
+}
+
+.game-elem:active {
+    transform: scale(0.9, 0.9);
+    border: 2px solid red;
+}
