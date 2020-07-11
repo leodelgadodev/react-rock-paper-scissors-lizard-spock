@@ -13,7 +13,8 @@ export default function Game(props) {
     const [playerTurn, setPlayerTurn] = useState("");
 
     useEffect(() => {
-        console.log(props);
+        // eslint-disable-next-line react/prop-types
+        debugger; console.log(props.mode);
         setPlayerTurn(GameEngine.getPlayer(1));
     }, []);
 
