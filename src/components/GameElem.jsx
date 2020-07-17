@@ -11,7 +11,7 @@ export default function GameElem(props) {
     }, [])
 
     const handleClick = () => {
-        GameEngine.togglePlay();
+        GameEngine.togglePlay(type);
     }
 
     return(
