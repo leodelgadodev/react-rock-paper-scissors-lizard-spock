@@ -1,7 +1,7 @@
 {
     "player1": "Jugador 1",
     "player2": "",
-    "currentPlayer": "player1",
+    "currentPlayer": "",
     "score1": 0,
     "score2": 0,
     "election1": "",

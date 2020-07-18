@@ -14,37 +14,25 @@ const GameEngine = {
         State.player2 = play2;
     },
 
-    getPlayer(number) {
-        let res;
-        switch(number) {
-            case 1: res = State.player1; break;
-            case 2: res = State.player2; break;
-        }
-
-        return res;
+    getCurrentPlayer() {
+        return State.currentPlayer;
     },
 
-    getPlayers() {
-        let res = [];
-        res.push(State.player1);
-        res.push(State.player2);
-        return res;
-    },
-
-    async togglePlay(election) {
-        await this.calculateRound().then(() => {
-
-        });
+    togglePlay(election) {
         switch(State.currentPlayer) {
             case "player1": {
-                State.currentPlayer = "player2";
-                State.election1 = election
+                State.currentPlayer = State.player2;
+                State.election1 = election;
+                console.log(State.election1);
             } break;
             case "player2": {
-                State.currentPlayer = "player1";
+                State.currentPlayer = State.player1;
                 State.election2 = election;
+                console.log(State.election2);
             }
         }
+        console.log(State.currentPlayer);
+        this.calculateRound();
     },
 
     computerPlay() {
@@ -114,7 +102,7 @@ const GameEngine = {
     configureMode(mode) {
         switch(mode) {
             case "player": {
-                State.player2 = 'Jugador 2';
+               State.player2 = 'Jugador 2';
             } break;
             case "computer": {
                 State.player2 = "Computador"
