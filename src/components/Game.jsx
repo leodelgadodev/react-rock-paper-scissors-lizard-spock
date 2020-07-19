@@ -41,7 +41,7 @@ export default function Game() {
 
             } break; 
             case 2: {
-                debugger; GameEngine.saveChoice(2, choice);
+                GameEngine.saveChoice(2, choice);
                 setPlayerTurn(GameEngine.getPlayer(1));
                 setTurn(1);
             } break;
@@ -51,16 +51,18 @@ export default function Game() {
 
         if(turnCount === 2) {
             setTurnCount(1);
-            debugger; console.log(GameEngine.calculateRound());
+            console.log("vs Player", GameEngine.calculateRound());
         }
     }
 
     const simulateComputerPlay = () => {
-        console.log(playerTurn);
+        GameEngine.computerPlay();
         setTimeout(() => {
             setComputerTurn(false);
             setTurn(1);
+            setTurnCount(1);
             setPlayerTurn(GameEngine.getPlayer(1));
+            console.log("vs AI", GameEngine.calculateRound());
         }, 1000);
     }
 

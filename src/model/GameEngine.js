@@ -55,19 +55,19 @@ const GameEngine = {
         let election = randomInt(1, 5);
         switch(election) {
             case 1: {
-                this.togglePlay("rock");
+                State.election2 = "rock";
             } break;
             case 2: {
-                this.togglePlay("paper");
+                State.election2 = "paper";
             } break;
             case 3: {   
-                this.togglePlay("scissors");
+                State.election2 = "scissors";
             } break;
             case 4: {
-                this.togglePlay("lizard");
+                State.election2 = "lizard";
             } break;
             case 5: {
-                this.togglePlay("spock");
+                State.election2 = "spock";
             }
         }
     },
@@ -118,11 +118,10 @@ const GameEngine = {
                     res = {winner: State.player2, choice: State.election2};
                 }
             } break;
-            default: {
-                res = {winner: false}
-            }
+        }
 
-            return res;
+        if (e1 === e2) {
+            res = {winner: false};
         }
 
         return res;
