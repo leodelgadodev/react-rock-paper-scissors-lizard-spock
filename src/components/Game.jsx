@@ -26,19 +26,19 @@ export default function Game() {
     useEffect(() => {
         GameEngine.configureMode(urlMode);
         setPlayerTurn(GameEngine.getPlayer(1));
-        if(turn === 1) {
-            setPlayerTurn(GameEngine.getPlayer(1));
-        } else {
+        if(turn === 2) {
             setPlayerTurn(GameEngine.getPlayer(2));
         }
     }, []);
 
     const resetState = () => {
-        // setEndgame(false);
-        // setTurn(1);
-        // setTurnCount(1);
-        // setComputerTurn(false);
-        // setResultsJson({});
+        GameEngine.resetElections();
+        setEndgame(false);
+        setPlayerTurn(GameEngine.getPlayer(1));
+        setTurn(1);
+        setTurnCount(1);
+        setComputerTurn(false);
+        setResultsJson({});
     }
 
     const togglePlay = (choice) => {
@@ -56,15 +56,12 @@ export default function Game() {
 
             case 2: {
                 GameEngine.saveChoice(2, choice);
-                setPlayerTurn(GameEngine.getPlayer(1));
-                setTurn(1);
             } break;
         }
 
         setTurnCount(turnCount+1);
 
         if(turnCount === 2) {
-            setTurnCount(1);
             setResultsJson(GameEngine.calculateRound());
             setEndgame(true);
         }
@@ -73,12 +70,7 @@ export default function Game() {
     const simulateComputerPlay = () => {
         GameEngine.computerPlay();
         setTimeout(() => {
-            setComputerTurn(false);
-            setTurn(1);
-            setTurnCount(1);
-            setPlayerTurn(GameEngine.getPlayer(1));
             setResultsJson(GameEngine.calculateRound());
-            // console.log(resultsJson);
             setEndgame(true);
         }, 1000);
     }
@@ -111,13 +103,13 @@ export default function Game() {
             <div className="flex flex-col justify-center px-12 py-8">
                 <EndgameMsg results={resultsJson} />
                 <button className="bg-blue-700 
-                hover:bg-blue-400 text-white font-bold py-2 px-4 
+                hover:bg-blue-400 text-white font-bold py-2
                 border-b-4 border-blue-800 hover:border-blue-500 
-                rounded mt-5 mb-2" onClick={resetState()}>
+                rounded mt-5 mb-2" onClick={() => resetState()}>
                     Jugar otra Ronda
                 </button>
                 <button className="bg-blue-700 
-                hover:bg-blue-400 text-white font-bold py-2 px-4 
+                hover:bg-blue-400 text-white font-bold py-2
                 border-b-4 border-blue-800 hover:border-blue-500 
                 rounded mt-2 mb-2">
                     <Link to="/">Jugar una partida de Cero</Link>
