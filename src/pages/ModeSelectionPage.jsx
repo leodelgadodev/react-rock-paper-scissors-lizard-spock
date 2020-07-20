@@ -7,7 +7,8 @@ import GameEngine from '../model/GameEngine';
 export default function ModeSelectionPage() {
 
     useEffect(() => {
-        GameEngine.reset();
+        GameEngine.resetPlayers();
+        GameEngine.resetElections();
     })
 
     return(

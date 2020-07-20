@@ -2,20 +2,19 @@ import State from './GameState.json';
 
 const GameEngine = {
 
-    reset() {
+    resetPlayers() {
         State.player1 = "";
         State.player2 = "";
-        State.playerScore1 = "";
-        State.playerScore2 = "";
+    },
+
+    resetElections() {
+        State.election1 = "";
+        State.election2 = "";
     },
 
     setPlayers(play1, play2) {
         State.player1 = play1;
         State.player2 = play2;
-    },
-
-    getCurrentPlayer() {
-        return State.currentPlayer;
     },
 
     getPlayer(number) {
@@ -50,11 +49,6 @@ const GameEngine = {
                 State.election2 = "Spock";
             }
         }
-    },
-
-    resetElections() {
-        State.election1 = "";
-        State.election2 = "";
     },
 
     calculateRound() {
