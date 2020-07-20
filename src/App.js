@@ -6,8 +6,7 @@ import './tailwind.output.css';
 import Page from './pages/Page';
 import ModeSelectionPage from './pages/ModeSelectionPage';
 import GamePage from './pages/GamePage';
-import EndgamePage from './pages/EndgamePage';
-
+import NotFoundPage from './pages/NotFoundPage';
 
 function App() {
   return(
@@ -15,8 +14,7 @@ function App() {
       <Switch>
         <Route exact path="/" render={() => <Page component={ModeSelectionPage}/>}/>
         <Route exact path="/game" render={() => <Page component={GamePage}/>}/>
-        <Route exact path="/fin" render={() => <Page component={EndgamePage}/>}/>
-        <Route path="*" render={() => <h1>404 NOT FOUND</h1>}/>
+        <Route path="*" render={() => <Page component={NotFoundPage}/>}/>
       </Switch>
     </BrowserRouter> 
   );

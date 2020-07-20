@@ -31,43 +31,23 @@ const GameEngine = {
         return res;
     },
 
-    // togglePlay(election) {
-    //     console.log(election);
-    //     let currentPlayer = State.currentPlayer;
-    //     switch(currentPlayer) {
-    //         case "Jugador 1" || "Jugador": {
-    //             State.currentPlayer = State.player2;
-    //             State.election1 = election;
-    //             debugger; console.log(State.election1);
-    //         } break;
-    //         case "Jugador 2" || "Computador": {
-    //             State.currentPlayer = State.player1;
-    //             State.election2 = election;
-    //             debugger; console.log(State.election2);
-    //         }
-    //     }
-    //     currentPlayer = State.currentPlayer
-    //     debugger; console.log('turno de ' + currentPlayer);
-    //     this.calculateRound();
-    // },
-
     computerPlay() {
         let election = randomInt(1, 5);
         switch(election) {
             case 1: {
-                State.election2 = "rock";
+                State.election2 = "Piedra";
             } break;
             case 2: {
-                State.election2 = "paper";
+                State.election2 = "Papel";
             } break;
             case 3: {   
-                State.election2 = "scissors";
+                State.election2 = "Tijeras";
             } break;
             case 4: {
-                State.election2 = "lizard";
+                State.election2 = "Lagarto";
             } break;
             case 5: {
-                State.election2 = "spock";
+                State.election2 = "Spock";
             }
         }
     },
@@ -83,36 +63,36 @@ const GameEngine = {
         let e2 = State.election2;
 
         switch(e1) {
-            case "rock": {
-                if((e2 == "scissors") || (e2 == "lizard")) {
+            case "Piedra": {
+                if((e2 === "Tijeras") || (e2 === "Lagarto")) {
                     res = {winner: State.player1, choice: State.election1};
                 } else {
                     res = {winner: State.player2, choice: State.election2};
                 }
             } break;
-            case "paper": {
-                if((e2 == "rock") || (e2 == "spock")) {
+            case "Papel": {
+                if((e2 === "Piedra") || (e2 === "Spock")) {
                     res = {winner: State.player1, choice: State.election1};
                 } else {
                     res = {winner: State.player2, choice: State.election2};
                 }
             } break;
-            case "scissors": {
-                if((e2 == "paper") || (e2 == "lizard")) {
+            case "Tijeras": {
+                if((e2 === "Papel") || (e2 === "Lagarto")) {
                     res = {winner: State.player1, choice: State.election1};
                 } else {
                     res = {winner: State.player2, choice: State.election2};
                 }
             } break;
-            case "lizard": {
-                if((e2 == "paper") || (e2 == "spock")) {
+            case "Lagarto": {
+                if((e2 === "Papel") || (e2 === "Spock")) {
                     res = {winner: State.player1, choice: State.election1};
                 } else {
                     res = {winner: State.player2, choice: State.election2};
                 }
             } break;
-            case "spock": {
-                if((e2 == "scissors") || (e2 == "rock")) {
+            case "Spock": {
+                if((e2 === "Tijeras") || (e2 === "Piedra")) {
                     res = {winner: State.player1, choice: State.election1};
                 } else {
                     res = {winner: State.player2, choice: State.election2};
