@@ -12,9 +12,38 @@ const GameEngine = {
         State.election2 = "";
     },
 
+    resetScore() {
+        State.score1 = 0;
+        State.score2 = 0;
+    },
+
     setPlayers(play1, play2) {
         State.player1 = play1;
         State.player2 = play2;
+    },
+
+    saveChoice(player, election) {
+        switch(player) {
+            case 1: State.election1 = election; break;
+            case 2: State.election2 = election; break;
+        }
+    },
+
+    updateScoreFor(player) {
+        switch(player) {
+            case 1: State.score1 = State.score1 + 1; break;
+            case 2: State.score2 = State.score2 + 1; break;
+        }
+    },
+
+    getScore(player) {
+        let res;
+        switch(player) {
+            case 1: res = State.score1; break;
+            case 2: res = State.score2; break;
+        }
+
+        return res;
     },
 
     getPlayer(number) {
@@ -99,13 +128,6 @@ const GameEngine = {
         }
 
         return res;
-    },
-
-    saveChoice(player, election) {
-        switch(player) {
-            case 1: State.election1 = election; break;
-            case 2: State.election2 = election; break;
-        }
     },
 
     configureMode(mode) {

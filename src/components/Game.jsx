@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 
 import lizard from '../resources/lizard.svg';
 import rock from '../resources/rock.svg';
@@ -9,6 +9,7 @@ import spock from '../resources/spock.svg';
 
 import GameEngine from '../model/GameEngine';
 import EndgameMsg from './EndgameMsg';
+import BtnLink from './BtnLink';
 
 export default function Game() {
 
@@ -28,6 +29,8 @@ export default function Game() {
     useEffect(() => {
         GameEngine.configureMode(urlMode);
         setPlayerTurn(GameEngine.getPlayer(1));
+        setScore1(GameEngine.getScore(1));
+        setScore2(GameEngine.getScore(2));
         if(turn === 2) {
             setPlayerTurn(GameEngine.getPlayer(2));
         }
@@ -64,26 +67,30 @@ export default function Game() {
         setTurnCount(turnCount+1);
 
         if(turnCount === 2) {
-            setResultsJson(GameEngine.calculateRound());
+            let result = GameEngine.calculateRound();
+            setResultsJson(result);
             setEndgame(true);
-            updateScore();
+            updateScore(result);
         }
     }
 
     const simulateComputerPlay = () => {
         GameEngine.computerPlay();
         setTimeout(() => {
-            setResultsJson(GameEngine.calculateRound());
+            let result = GameEngine.calculateRound();
+            setResultsJson(result);
             setEndgame(true);
-            updateScore();
-        }, 1000);
+            updateScore(result);
+        }, 1500);
     }
 
-    const updateScore = () => {
-        switch(resultsJson.winner) {
-            case false: break;
-            case GameEngine.getPlayer(1): setScore1(score1+1); break;
-            case GameEngine.getPlayer(2): setScore2(score2+1); break;
+    const updateScore = (result) => {
+        if((result.winner === GameEngine.getPlayer(2))) {
+            GameEngine.updateScoreFor(2);
+            setScore2(GameEngine.getScore(2));
+        } else if(result.winner === GameEngine.getPlayer(1)) {
+            GameEngine.updateScoreFor(1); 
+            setScore1(GameEngine.getScore(1));
         }
     }
 
@@ -92,7 +99,7 @@ export default function Game() {
             <div className="max-w-xl rounded overflow-hidden shadow-md text-3xl font-bolder flex justify-between bg-white mb-5">
                 <span className="ml-2">{GameEngine.getPlayer(1)} - {score1}</span> 
                 <span>-</span>
-                <span className="mr-2"> {score2} - {GameEngine.getPlayer(2)}</span> 
+                <span className="mr-2">{score2} - {GameEngine.getPlayer(2)}</span> 
             </div>
 
             <div className="max-w-xl rounded overflow-hidden shadow-md bg-white">
@@ -132,12 +139,7 @@ export default function Game() {
                     rounded mt-5 mb-2" onClick={() => resetState()}>
                         Jugar otra Ronda
                     </button>
-                    <button className="bg-blue-700 
-                    hover:bg-blue-400 text-white font-bold py-2
-                    border-b-4 border-blue-800 hover:border-blue-500 
-                    rounded mt-2 mb-2">
-                        <Link to="/">Jugar una partida de Cero</Link>
-                    </button>
+                    <BtnLink url="/" text="Jugar una partida de Cero"/>
                 </div>
                 )}
             </div>

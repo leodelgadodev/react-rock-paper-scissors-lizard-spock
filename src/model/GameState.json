@@ -2,5 +2,7 @@
     "player1": "",
     "player2": "",
     "election1": "",
-    "election2": ""
+    "election2": "",
+    "score1": 0,
+    "score2": 0
 }

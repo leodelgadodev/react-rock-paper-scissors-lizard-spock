@@ -9,6 +9,7 @@ export default function ModeSelectionPage() {
     useEffect(() => {
         GameEngine.resetPlayers();
         GameEngine.resetElections();
+        GameEngine.resetScore();
     })
 
     return(
