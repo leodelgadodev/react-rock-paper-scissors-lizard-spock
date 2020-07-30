@@ -80,51 +80,39 @@ const GameEngine = {
         }
     },
 
+    calculateEndgameAndReturnResultJSON(comparator1, comparator2) {
+        let e1 = State.election1;
+        let e2 = State.election2;
+        
+        if((e2 === comparator1) || (e2 === comparator2)) {
+            return {winner: State.player1, choice: State.election1};
+        } else if (e1 === e2) {
+            return {winner: false}
+        } else {
+            return {winner: State.player2, choice: State.election2};
+        }
+    },
+
     calculateRound() {
         let res;
         let e1 = State.election1;
-        let e2 = State.election2;
 
         switch(e1) {
             case "Piedra": {
-                if((e2 === "Tijeras") || (e2 === "Lagarto")) {
-                    res = {winner: State.player1, choice: State.election1};
-                } else {
-                    res = {winner: State.player2, choice: State.election2};
-                }
+                debugger; res = this.calculateEndgameAndReturnResultJSON("Tijeras", "Lagarto");
             } break;
             case "Papel": {
-                if((e2 === "Piedra") || (e2 === "Spock")) {
-                    res = {winner: State.player1, choice: State.election1};
-                } else {
-                    res = {winner: State.player2, choice: State.election2};
-                }
+                res = this.calculateEndgameAndReturnResultJSON("Piedra", "Spock");
             } break;
             case "Tijeras": {
-                if((e2 === "Papel") || (e2 === "Lagarto")) {
-                    res = {winner: State.player1, choice: State.election1};
-                } else {
-                    res = {winner: State.player2, choice: State.election2};
-                }
+                res = this.calculateEndgameAndReturnResultJSON("Papel", "Lagarto");
             } break;
             case "Lagarto": {
-                if((e2 === "Papel") || (e2 === "Spock")) {
-                    res = {winner: State.player1, choice: State.election1};
-                } else {
-                    res = {winner: State.player2, choice: State.election2};
-                }
+                res = this.calculateEndgameAndReturnResultJSON("Papel", "Spock");
             } break;
             case "Spock": {
-                if((e2 === "Tijeras") || (e2 === "Piedra")) {
-                    res = {winner: State.player1, choice: State.election1};
-                } else {
-                    res = {winner: State.player2, choice: State.election2};
-                }
+                res = this.calculateEndgameAndReturnResultJSON("Tijeras", "Piedra");
             } break;
-        }
-
-        if (e1 === e2) {
-            res = {winner: false};
         }
 
         return res;
@@ -138,7 +126,7 @@ const GameEngine = {
             } break;
             case "computer": {
                 State.player1 = 'Jugador';
-                State.player2 = "Computador"
+                State.player2 = "Computador";
             }
         }
     }
